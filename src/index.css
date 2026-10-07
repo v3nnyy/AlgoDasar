@@ -1,0 +1,244 @@
+﻿@import "tailwindcss";
+
+/* Flip7 tokens; preserve existing component utilities and layout. */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --color-purple-100: #e8f6f5;
+  --color-purple-200: #b9e7e4;
+  --color-purple-300: #72d3ce;
+  --color-purple-400: #3cc4bd;
+  --color-purple-500: #2ba8a2;
+  --color-purple-600: #1e8c86;
+  --color-purple-700: #176e69;
+  --color-purple-900: #e8f6f5;
+  --color-purple-950: #e8f6f5;
+  --color-indigo-200: #c6e8f8;
+  --color-indigo-300: #5dade2;
+  --color-indigo-400: #5dade2;
+  --color-indigo-500: #2ba8a2;
+  --color-indigo-600: #1e8c86;
+  --color-indigo-950: #e8f6f5;
+  --color-fuchsia-200: #ffd4c7;
+  --color-fuchsia-300: #ff8a6a;
+  --color-fuchsia-400: #ef6c4a;
+  --color-fuchsia-500: #ef6c4a;
+  --color-fuchsia-600: #d45233;
+  --color-fuchsia-950: #fff0e9;
+  --color-amber-200: #ffe47a;
+  --color-amber-300: #ffd23f;
+  --color-amber-400: #ffd23f;
+  --color-amber-500: #e6b800;
+  --color-amber-950: #fff8e7;
+  --color-emerald-300: #27ae60;
+  --color-emerald-400: #27ae60;
+  --color-emerald-500: #27ae60;
+  --color-emerald-600: #21834b;
+  --color-emerald-950: #eaf8ef;
+  --color-rose-300: #ff8a6a;
+  --color-rose-400: #ef6c4a;
+  --color-rose-500: #e74c3c;
+  --color-rose-600: #d45233;
+  --color-rose-950: #fff0e9;
+  --color-teal-950: #e8f6f5;
+  --color-slate-100: #174743;
+  --color-slate-200: #285650;
+  --color-slate-300: #3d625d;
+  --color-slate-400: #526f6a;
+  --color-slate-500: #5d746f;
+}
+
+:root, .materi-page {
+  --color-surface: #ffffff;
+  --color-surface-subtle: #e8f6f5;
+  --color-border: #b9dedb;
+  --color-border-subtle: #d4e9e5;
+  --color-primary: #1e8c86;
+  --color-primary-subtle: #e8f6f5;
+  --color-primary-text: #176e69;
+  --color-text-main: #174743;
+  --color-text-muted: #3d625d;
+  --color-text-faint: #526f6a;
+  --color-code-bg: #fff8e7;
+  --color-code-header: #e8f6f5;
+  --flip7-cream: #fff8e7;
+  --flip7-shadow: 0 2px 10px rgb(43 168 162 / 10%);
+  --flip7-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  color-scheme: light;
+}
+
+@layer base {
+  body { font-family: var(--font-sans); background: #eff8f7; color: #174743; }
+  code, pre, kbd { font-family: "JetBrains Mono", monospace; }
+  h1, h2, h3, h4 { font-weight: 800; text-wrap: balance; }
+  h1 { letter-spacing: 0.025em; }
+  h2, h3 { letter-spacing: 0.015em; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  button { min-height: 36px; }
+  button:not(:disabled), a { touch-action: manipulation; }
+  :focus-visible {
+    outline: 2px solid #1e8c86;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgb(43 168 162 / 15%);
+  }
+  ::selection { background: #ffe47a; color: #174743; }
+}
+
+/* Compatibility with hard-coded dark surfaces; no JSX or data changes. */
+#root > div { background: #eff8f7; color: var(--color-text-main); }
+#root [class*="bg-[#"] { background-color: var(--flip7-cream); }
+#root .glass-card[class*="bg-[#"] { background-color: #ffffff; }
+#root [class*="via-[#"] {
+  background-image: linear-gradient(135deg, #fff8e7, #fff0bc);
+  border-left-color: #ffd23f;
+}
+#root > div > .fixed > div:nth-child(1) { background-color: rgb(43 168 162 / 12%); }
+#root > div > .fixed > div:nth-child(2) { background-color: rgb(239 108 74 / 9%); }
+#root > div > .fixed > div:nth-child(3) { background-color: rgb(255 210 63 / 12%); }
+#root > div > .fixed > div:last-child {
+  background-image: radial-gradient(rgb(43 168 162 / 24%) 1px, transparent 1px);
+  opacity: 0.3;
+}
+
+/* Accessible ink on light surfaces for labels formerly intended for dark mode. */
+#root .text-white, #root .hover\:text-white:hover { color: var(--color-text-main); }
+#root [class*="text-purple-"], #root [class*="text-teal-"] { color: #176e69; }
+#root [class*="text-indigo-"] { color: #246a91; }
+#root [class*="text-fuchsia-"], #root [class*="text-rose-"] { color: #b94328; }
+#root [class*="text-amber-"] { color: #806000; }
+#root [class*="text-emerald-"] { color: #207a45; }
+#root [class*="text-transparent"] { color: transparent; }
+#root [class*="border-white/"] { border-color: var(--color-border-subtle); }
+
+.glass-card, .glass-card-interactive {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid #3cc4bd;
+  border-radius: 12px;
+  box-shadow: var(--flip7-shadow);
+}
+.glass-card-interactive {
+  transition: transform 220ms var(--flip7-bounce), box-shadow 220ms ease, border-color 220ms ease;
+}
+.glass-card-interactive:hover {
+  border-color: #3cc4bd;
+  border-left-color: #ffd23f;
+  box-shadow: 0 4px 16px rgb(43 168 162 / 20%);
+  transform: translateY(-3px);
+}
+.glass-card-inner { background: #fff8e7; border: 1px solid #e9dec0; border-radius: 8px; }
+.glass-card-subtle { background: #e8f6f5; border: 1px solid var(--color-border); }
+#root [class*="shadow-"] { --tw-shadow-color: rgb(43 168 162 / 14%); }
+#root [class*="shadow-["], #root .glow-purple, #root .glow-purple-lg, #root .glow-purple-sm {
+  box-shadow: 0 2px 10px rgb(43 168 162 / 20%);
+}
+
+#root header {
+  background: rgb(255 248 231 / 96%);
+  border-bottom: 2px dashed #b9dedb;
+  box-shadow: var(--flip7-shadow);
+}
+#root header nav { border-radius: 999px; }
+#root header button[class*="bg-purple-600/40"] {
+  background: #ffd23f;
+  border-color: #e6b800;
+  color: #174743;
+  box-shadow: 0 2px 10px rgb(255 210 63 / 40%);
+}
+
+/* Retro ribbon applied to the existing AlgoDasar wordmark. */
+#root header button > .flex-col > div > span {
+  position: relative;
+  padding: 2px 8px;
+  background: #fff8e7;
+  border: 1.5px solid #1e8c86;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0 #ffd23f;
+}
+#root header button > .flex-col > div > span::before,
+#root header button > .flex-col > div > span::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 8px;
+  height: 18px;
+  background: #f5e7c4;
+  border: 1px solid #1e8c86;
+  z-index: -1;
+}
+#root header button > .flex-col > div > span::before { left: -6px; transform: skewY(-15deg); }
+#root header button > .flex-col > div > span::after { right: -6px; transform: skewY(15deg); }
+
+#root button { border-radius: 999px; transition-duration: 220ms; transition-timing-function: var(--flip7-bounce); }
+#root button:not(:disabled):active { transform: scale(0.95); }
+#root button:disabled { cursor: default; }
+#root button[class*="from-purple-600"] {
+  background: linear-gradient(180deg, #ffe47a 0%, #ffd23f 55%, #f2c529 100%);
+  border-color: #e6b800;
+  color: #174743;
+  box-shadow: inset 0 2px 0 rgb(255 255 255 / 55%), 0 2px 10px rgb(255 210 63 / 40%);
+}
+#root button[class*="from-purple-600"] svg { color: #174743; }
+#root button[class*="from-purple-600"]:hover:not(:disabled) {
+  background: linear-gradient(180deg, #fff0a6, #ffd23f 65%, #e6b800);
+  box-shadow: inset 0 2px 0 rgb(255 255 255 / 60%), 0 4px 14px rgb(255 210 63 / 45%);
+}
+#root button[class*="from-fuchsia-600"] {
+  background: linear-gradient(180deg, #ffb39b, #ff8a6a);
+  border-color: #ef6c4a;
+  color: #672718;
+  box-shadow: inset 0 2px 0 rgb(255 255 255 / 45%), 0 2px 10px rgb(239 108 74 / 35%);
+}
+#root button[class*="from-fuchsia-600"]:hover:not(:disabled) {
+  background: linear-gradient(180deg, #ffc6b4, #ff9b80);
+}
+#root button.glass-card { box-shadow: 0 2px 10px rgb(43 168 162 / 18%); }
+#root button.glass-card:hover:not(:disabled) { background-color: #e8f6f5; }
+#root button.w-full.text-left { border-radius: 12px; }
+
+/* Preserve distinct selected, correct and incorrect states. */
+#root :is(.bg-purple-600, .bg-purple-500, .bg-emerald-500, .bg-emerald-600, .bg-rose-500, .bg-rose-600) { color: #ffffff; }
+#root [class*="bg-emerald-950"].glass-card {
+  background-color: #eaf8ef;
+  border-left-color: #27ae60;
+  box-shadow: 0 2px 10px rgb(39 174 96 / 12%);
+}
+#root [class*="bg-rose-950"].glass-card {
+  background-color: #fff0e9;
+  border-left-color: #ef6c4a;
+  box-shadow: 0 2px 10px rgb(239 108 74 / 18%);
+}
+#root button[class*="border-emerald-400"] { background-color: #eaf8ef; }
+#root button[class*="border-rose-400"] { background-color: #fff0e9; }
+#root input, #root select, #root textarea {
+  background-color: #fff8e7;
+  color: #174743;
+  border-color: #b9dedb;
+  border-radius: 8px;
+  min-height: 36px;
+}
+#root :is(.border-t, .border-b) { border-style: dashed; }
+#root .materi-page [style*="background-color: var(--color-surface);"] {
+  border-radius: 12px;
+  box-shadow: var(--flip7-shadow);
+}
+#root section h2 { padding-bottom: 8px; border-bottom: 1.5px dashed #b9dedb; }
+#root h1 [class*="bg-clip-text"] { background-image: linear-gradient(110deg, #1e8c86 5%, #2ba8a2 55%, #d45233); }
+.text-gradient-purple {
+  background: linear-gradient(110deg, #1e8c86, #2ba8a2 60%, #d45233);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#root footer { background-color: #fff8e7; border-top: 2px dashed #b9dedb; }
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #eff8f7; }
+::-webkit-scrollbar-thumb { background: #72c9c3; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #1e8c86; }
+@media (prefers-reduced-motion: reduce) {
+  #root *, #root *::before, #root *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Media Pembelajaran Algoritma & Pemrograman Dasar",
+  "description": "Media pembelajaran interaktif multimedia konsep algoritma, flowchart, pseudocode, dan tipe data dengan simulasi visual, aktivitas interaktif, dan latihan soal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
